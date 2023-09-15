@@ -1,41 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiTelerikControlsSample.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    <telerik:RadTabView x:Name="tabView">
+        <telerik:TabViewItem HeaderText="Calendar">
+            <telerik:RadCalendar x:Name="calendar" SelectedDate="2023-09-20" SelectionMode="Range" />
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Accordion">
+            <telerik:RadAccordion x:Name="accordion">
+                <telerik:AccordionItem HeaderText="Item 1">
+                    <telerik:AccordionItem.Content>
+                        <Label Text="This is the content of the first item." />
+                    </telerik:AccordionItem.Content>
+                </telerik:AccordionItem>
+                <telerik:AccordionItem HeaderText="Item 2">
+                    <telerik:AccordionItem.Content>
+                        <Label Text="This is the content of the second item." />
+                    </telerik:AccordionItem.Content>
+                </telerik:AccordionItem>
+                <telerik:AccordionItem HeaderText="Item 3">
+                    <telerik:AccordionItem.Content>
+                        <Label Text="This is the content of the third item." />
+                    </telerik:AccordionItem.Content>
+                </telerik:AccordionItem>
+            </telerik:RadAccordion>
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="Image Edit">
+            <Grid RowDefinitions="*, Auto">
+                <telerik:RadImageEditor x:Name="imageEditor" Source="dotnet_bot.png" />
+                <telerik:RadImageEditorToolbar x:Name="imageEditorToolbar" Grid.Row="1" ImageEditor="{x:Reference imageEditor}" />
+            </Grid>
+        </telerik:TabViewItem>
+        <telerik:TabViewItem HeaderText="PDF Viewer">
+            <Grid RowDefinitions="Auto, *">
+                <telerik:RadPdfViewerToolbar PdfViewer="{x:Reference pdfViewer1 }" x:Name="pdfViewerToolbar1" >
+                    <telerik:PdfViewerFitToWidthToolbarItem />
+                    <telerik:PdfViewerZoomInToolbarItem />
+                    <telerik:PdfViewerZoomOutToolbarItem />
+                    <telerik:PdfViewerNavigateToPreviousPageToolbarItem />
+                    <telerik:PdfViewerNavigateToNextPageToolbarItem />
+                </telerik:RadPdfViewerToolbar>
+                <telerik:RadPdfViewer x:Name="pdfViewer1" Grid.Row="1" Source="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" />
+            </Grid>
+        </telerik:TabViewItem>
+    </telerik:RadTabView>
 
 </ContentPage>
